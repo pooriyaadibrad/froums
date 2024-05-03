@@ -7,8 +7,9 @@ class LoginForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({'class': 'form-control'})
             if field == 'email':
                 self.fields[field].widget.attrs.update({'placeholder': 'Email'})
+                
             if field == 'password':
-                self.fields[field].widget.attrs.update({'placeholder': 'Password','type':'password','name':'password'})
+
                 self.fields[field].widget=forms.PasswordInput(attrs={'placeholder':'Password','class':'form-control'})
 
     class Meta:

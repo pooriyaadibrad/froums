@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import models
 from django.contrib.auth import authenticate, login, logout
 from . import loginForm
+from django.contrib import messages
 # Create your views here.
 def index(request):
     posts = models.post.objects.all().order_by('-id')
@@ -22,3 +23,20 @@ def singlepage(request,id):
 def logInView(request):
     form=loginForm.LoginForm()
     return render(request=request,template_name='loginForm.html',context={'form':form})
+def Login(request):
+    if request.method=='POST':
+        form=loginForm.LoginForm(request.POST)
+        if form.is_valid():
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password']
+            user=authenticate(username=email,password=password)
+            login(request,user)
+            messages.success(request,'با موفقیت وارد شدید!')
+            return redirect('index')
+        else:
+            messages.error(request,'در ورود شما مشکلی پیش آمد!')
+            return redirect('login')
+def LogOut(request):
+    logout(request)
+    messages.success(request,'خروج شما موفق بود!')
+    return redirect ('index')
