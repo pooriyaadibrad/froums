@@ -15,5 +15,6 @@ def blog(request):
     return render(request, 'blog.html',context={'posts':posts})
 def contact(request):
     return render(request=request,template_name='Contact_us.html')
-def singlepage(request):
-    return render(request=request,template_name='single.html')
+def singlepage(request,id):
+    post=models.post.objects.get(id=id)
+    return render(request=request,template_name='single.html',context={'post':post})
