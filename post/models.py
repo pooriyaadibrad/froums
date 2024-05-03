@@ -9,6 +9,7 @@ class post(models.Model):
     title = models.CharField(max_length=100,default='',null=False,blank=False)
     #author = models.CharField(max_length=100,default='',null=False,blank=False)
     content = models.TextField(default='',null=True,blank=True)
+    largeContent = models.TextField(default='',null=True,blank=True)
     image = models.ImageField(upload_to='media/post/',default='default.jpg')
     pub_date = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey('category',on_delete=models.CASCADE)
@@ -27,18 +28,18 @@ class user(models.Model):
     image = models.ImageField(upload_to='media/user/',default='default.jpg')
     studentCode=models.IntegerField(default=0,null=False,blank=False)
     adminStutus=models.BooleanField(default=False)
+    teacherStutus=models.BooleanField(default=False)
     def __str__(self):
         return f'{self.name}'
-
+"""
 class comment(models.Model):
     text = models.TextField()
     user = models.ForeignKey(user, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return f'{self.text}'
 
-
+"""
 
 
 class videoclass(models.Model):
