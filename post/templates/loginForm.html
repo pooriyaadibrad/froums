@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card ml-4">
+        <div class="col-8 pt-4 pb-4 ml-4">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                <center>
+                <button class="btn form-control col-5" style="background: #52b9cb ; color: white">Log in</button>
+                    </center>
+            </form>
+            <br>
+            <center>
+            <button class="btn form-control col-5" style="background: #0a58ca  ; color: white">sign IN</button>
+                    </center>
+             <div>
+                <label class="col-1 start-100 pl-0 ml-0"> show</label>
+                <input type="checkbox"  value="show" class="float-left col-sm-1 start-100 mt-1 check">
+                    </div>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

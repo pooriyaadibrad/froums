@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . import models
-
+from django.contrib.auth import authenticate, login, logout
+from . import loginForm
 # Create your views here.
 def index(request):
     posts = models.post.objects.all().order_by('-id')
@@ -18,3 +19,6 @@ def contact(request):
 def singlepage(request,id):
     post=models.post.objects.get(id=id)
     return render(request=request,template_name='single.html',context={'post':post})
+def logInView(request):
+    form=loginForm.LoginForm()
+    return render(request=request,template_name='loginForm.html',context={'form':form})
