@@ -20,8 +20,12 @@ def contact(request):
 def singlepage(request,id):
     post=models.post.objects.get(id=id)
     return render(request=request,template_name='single.html',context={'post':post})
-def logInView(request):
-    form=loginForm.LoginForm()
+def logInView(request,message):
+    form = loginForm.LoginForm()
+    if message== 'sendMessage':
+        messages.success(request,'لظفا برای نوشتن نظر اول وارد شوید !')
+        return render(request=request, template_name='loginForm.html', context={'form': form})
+
     return render(request=request,template_name='loginForm.html',context={'form':form})
 def Login(request):
     posts = models.post.objects.all().order_by('-id')
