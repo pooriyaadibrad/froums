@@ -5,7 +5,8 @@ urlpatterns = [
     path('blog/', views.blog, name='posts'),
     path('contact/', views.contact, name='post'),
     path('singlepage/<int:id>', views.singlepage, name='singlepage'),
-    path('LogIn/<string:message>', views.logInView, name='LogIn'),
+    path('LogIn/<int:message>', views.logInView, name='LogIn'),
     path('LogInReq/', views.Login, name='LogInReq'),
     path('LogOut/', views.LogOut, name='LogOut'),
+    path('comment/<int:id>', views.commentRegister, name='comment'),
 ]

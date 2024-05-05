@@ -212,13 +212,13 @@
             <div class="row justify-content-center pt-2 pb-4 mt-3">
                 <div class="col-12 col-md-8 col-lg-7 p-2"
                     style="background-color: #00989B;border-radius: 20px 20px 20px 20px;">
-                    {% if user.authenticated  %}
+                    {% if user.is_authenticated  %}
                     <div class="input-group">
                         <span class="my-auto mx-4" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                         <input type="text" class="form-control fh5co_footer_text_box"
                             placeholder="متن خود را برای ما ارسال کنید..." aria-describedby="basic-addon1"
                             style="border: 1px solid #00989B">
-                        <a href="#" class="input-group-addon  text-decoration-none" id=""
+                        <a  href="/comment/{{ id }}" class="input-group-addon  text-decoration-none" id=""
                             style="background-color: #00989B;color: white;border: 1px solid #00989B ;"> <i
                                 class=""></i>ارسال</a>
                     </div>
@@ -228,7 +228,7 @@
                         <input type="text" class="form-control fh5co_footer_text_box"
                             placeholder="متن خود را برای ما ارسال کنید..." aria-describedby="basic-addon1"
                             style="border: 1px solid #00989B">
-                        <a href="/LogIn/sendMessage" class="input-group-addon  text-decoration-none" id=""
+                        <a href="/LogIn/0" class="input-group-addon  text-decoration-none" id=""
                             style="background-color: #00989B;color: white;border: 1px solid #00989B ;"> <i
                                 class=""></i>ارسال</a>
                     </div>

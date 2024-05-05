@@ -22,14 +22,13 @@ def singlepage(request,id):
     return render(request=request,template_name='single.html',context={'post':post})
 def logInView(request,message):
     form = loginForm.LoginForm()
-    if message== 'sendMessage':
+    if message== '0':
         messages.success(request,'لظفا برای نوشتن نظر اول وارد شوید !')
         return render(request=request, template_name='loginForm.html', context={'form': form})
 
     return render(request=request,template_name='loginForm.html',context={'form':form})
 def Login(request):
     posts = models.post.objects.all().order_by('-id')
-
     users = models.user.objects.all()
     videos = models.videoclass.objects.all()
     for user in users:
@@ -42,7 +41,7 @@ def Login(request):
             user=authenticate(username=email,password=password)
             login(request,user)
             messages.success(request,'با موفقیت وارد شدید!')
-            return render(request=request,template_name='index.html',context={'posts':posts,'users':users,'videos':videos})
+            return render(request=request,template_name='index.html',context={'posts':posts,'users':users,'videos':videos,'id':user.id})
         else:
             messages.error(request,'در ورود شما مشکلی پیش آمد!')
             return redirect('login')
@@ -50,3 +49,10 @@ def LogOut(request):
     logout(request)
     messages.success(request,'خروج شما موفق بود!')
     return redirect ('index')
+def commentRegister(request,id):
+    user=models.user.objects.get(id=id)
+    if request.method=='POST':
+        instans=models.comment(request.POST)
+        instans.user=user
+        models.comment.save()
+        return redirect('index')

@@ -49,3 +49,10 @@ class videoclass(models.Model):
     link = models.CharField(max_length=100,default='',null=False,blank=False)
     def __str__(self):
         return f'{self.name}'
+
+class comment(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(user, on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'{self.text}'
