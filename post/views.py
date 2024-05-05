@@ -24,6 +24,12 @@ def logInView(request):
     form=loginForm.LoginForm()
     return render(request=request,template_name='loginForm.html',context={'form':form})
 def Login(request):
+    posts = models.post.objects.all().order_by('-id')
+
+    users = models.user.objects.all()
+    videos = models.videoclass.objects.all()
+    for user in users:
+        user.password = 0
     if request.method=='POST':
         form=loginForm.LoginForm(request.POST)
         if form.is_valid():
@@ -32,7 +38,7 @@ def Login(request):
             user=authenticate(username=email,password=password)
             login(request,user)
             messages.success(request,'با موفقیت وارد شدید!')
-            return redirect('index')
+            return render(request=request,template_name='index.html',context={'posts':posts,'users':users,'videos':videos})
         else:
             messages.error(request,'در ورود شما مشکلی پیش آمد!')
             return redirect('login')
