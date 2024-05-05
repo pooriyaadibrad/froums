@@ -103,7 +103,7 @@
                     </li>
                     {% else %}
                       <li class="nav-item pt-3 signInbtngit"  >
-                        <a style="text-decoration: none;color: #00989B" class="mx-4 my-3" aria-current="page" href="/LogIn">
+                        <a style="text-decoration: none;color: #00989B" class="mx-4 my-3" aria-current="page" href="/LogIn/">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor " style="width: 20px;height: 20px;font-family: fontuni; ">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -213,22 +213,24 @@
                 <div class="col-12 col-md-8 col-lg-7 p-2"
                     style="background-color: #00989B;border-radius: 20px 20px 20px 20px;">
                     {% if user.is_authenticated  %}
-                    <div class="input-group">
+                    <form method="post" action="/comment/{{ user.id }}" class="input-group">
+                    {% csrf_token %}
                         <span class="my-auto mx-4" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="text" class="form-control fh5co_footer_text_box"
+                       <!-- <input type="text" class="form-control fh5co_footer_text_box"
                             placeholder="متن خود را برای ما ارسال کنید..." aria-describedby="basic-addon1"
-                            style="border: 1px solid #00989B">
-                        <a  href="/comment/{{ id }}" class="input-group-addon  text-decoration-none" id=""
+                            style="border: 1px solid #00989B">-->{{ form }}
+                       <button  class="input-group-addon  text-decoration-none" id=""
                             style="background-color: #00989B;color: white;border: 1px solid #00989B ;"> <i
-                                class=""></i>ارسال</a>
-                    </div>
+                                class=""></i>ارسال</button>
+                    </form>
+
                     {% else %}
                           <div class="input-group">
                         <span class="my-auto mx-4" id="basic-addon1"><i class="fa fa-envelope"></i></span>
                         <input type="text" class="form-control fh5co_footer_text_box"
                             placeholder="متن خود را برای ما ارسال کنید..." aria-describedby="basic-addon1"
                             style="border: 1px solid #00989B">
-                        <a href="/LogIn/0" class="input-group-addon  text-decoration-none" id=""
+                        <a href="/LogIn1/0" class="input-group-addon  text-decoration-none" id=""
                             style="background-color: #00989B;color: white;border: 1px solid #00989B ;"> <i
                                 class=""></i>ارسال</a>
                     </div>
