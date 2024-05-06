@@ -10,6 +10,9 @@ def index(request):
     form=commentForm.CommentForm()
     users = models.user.objects.all()
     videos = models.videoclass.objects.all()
+    for video in videos:
+        video.link='https://www.google.com/'
+        video.save()
     for user in users:
         user.password=0
     return render(request, 'index.html',context={'posts':posts,'users':users,'videos':videos,'form':form})
@@ -78,7 +81,6 @@ def signInReq(request):
                 user=User.objects.create_user(form.cleaned_data['name'],form.cleaned_data['email'],form.cleaned_data['password'])
                 user.set_password(form.cleaned_data['password'])
                 user.save()
-
                 user=authenticate(request,username=form.cleaned_data['name'],password=form.cleaned_data['password'])
                 login(request,user,backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('index')
