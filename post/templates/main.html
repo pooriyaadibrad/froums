@@ -124,7 +124,13 @@
         </div>
     </nav>
     <!--End header -->
-
+    {% if messages %}
+    {% for message in messages %}
+        <div dir="rtl" class="alert alert-primary" role="alert">
+             {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
     {% block content %}{% endblock %}
 
     <!--footer-->
@@ -163,18 +169,18 @@
                     <div class="footer_mediya_icon d-flex ">
                         <div class="text-center d-inline-block"><a>
                                 <div class="fh5co_verticle_middle text-light mt-3">
-                                    <img src="./images/bale.svg" alt="bale icon" style="width: 35px;cursor: pointer;">
+                                    <img src="{% static 'images/bale.svg' %}" alt="bale icon" style="width: 35px;cursor: pointer;">
                                 </div>
                             </a></div>
                         <div class="text-center d-inline-block mx-4"><a>
                                 <div class="fh5co_verticle_middle ">
-                                    <img src="images/instagram.svg" alt="instagram icon"
+                                    <img src="{% static 'images/instagram.svg' %}" alt="instagram icon"
                                         style="width: 25px;cursor: pointer;">
                                 </div>
                             </a></div>
                         <div class="text-center d-inline-block"><a>
                                 <div class="fh5co_verticle_middle">
-                                    <img src="./images//telegram.svg" alt="telegram icon"
+                                    <img src=" {% static 'images/telegram.svg' %}" alt="telegram icon"
                                         style="width: 25px;cursor: pointer;">
 
                                 </div>
@@ -184,20 +190,17 @@
 
                 <div class="col-12 col-md-5 col-lg-2 position_footer_relative pr-2 md:mr-5">
 
-                    <div class="footer_main_title py-3"> Most Viewed Posts</div>
-                    <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-                    <a href="#" class="footer_post pb-4 text-decoration-none "> Success is not a good teacher failure
-                        makes you humble </a>
-                    <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-                    <a href="#" class="footer_post pb-4 text-decoration-none"> Success is not a good teacher failure
-                        makes you humble </a>
-                    <div class="footer_makes_sub_font"> Dec 31, 2016</div>
-                    <a href="#" class="footer_post pb-4 text-decoration-none"> Success is not a good teacher failure
-                        makes you humble </a>
+                    <div class="footer_main_title py-3"> لبنک مفید</div>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> Dec 31, 2016</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none "> فناوری نوبن آمل</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> Dec 31, 2016</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none">انجمن علمی مهندسی </a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> Dec 31, 2016</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> تست </a>
 
                 </div>
                 <div class="col-12 col-md-12 col-lg-4 ">
-                    <div class="footer_main_title py-3"> Last Modified Posts</div>
+                    <div class="footer_main_title py-3"> </div>
                     <a href="#" class="footer_img_post_6"><img src="images/allef-vinicius-108153.jpg" alt="img" /></a>
                     <a href="#" class="footer_img_post_6"><img src="images/32-450x260.jpg" alt="img" /></a>
                     <a href="#" class="footer_img_post_6"><img src="images/download (1).jpg" alt="img" /></a>
@@ -214,16 +217,16 @@
                 <div class="col-12 col-md-8 col-lg-7 p-2"
                     style="background-color: #00989B;border-radius: 20px 20px 20px 20px;">
                     {% if user.is_authenticated  %}
-                    <div class="input-group">
+                    <form method="get" action="/comment/{{ user.id }}" class="input-group">
+                    {% csrf_token %}
                         <span class="my-auto mx-4" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input name="mycomment" formmethod="post" type="text" class="form-control fh5co_footer_text_box"
+                        <input name="comment" type="text" class="form-control fh5co_footer_text_box"
                             placeholder="متن خود را برای ما ارسال کنید..." aria-describedby="basic-addon1"
                             style="border: 1px solid #00989B">
-                        {% csrf_token %}
-                        <a href="{% url 'comment/' %}?myInput={{ mycomment }}" class="input-group-addon  text-decoration-none" id=""
+                        <button type="submit" class="input-group-addon  text-decoration-none" id="commentRrgister"
                             style="background-color: #00989B;color: white;border: 1px solid #00989B ;"> <i
-                                class=""></i>ارسال</a>
-                    </div>
+                                class=""></i>ارسال</button>
+                    </form>
                     {% else %}
                           <div class="input-group">
                         <span class="my-auto mx-4" id="basic-addon1"><i class="fa fa-envelope"></i></span>

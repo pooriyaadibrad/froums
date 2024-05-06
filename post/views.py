@@ -4,18 +4,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from . import loginForm , commentForm ,signForm
 from django.contrib import messages
+from tkinter import messagebox
 # Create your views here.
 def index(request):
     posts = models.post.objects.all().order_by('-id')
+    postVIP=models.post.objects.filter(id=0).first()
     form=commentForm.CommentForm()
     users = models.user.objects.filter(teacherStutus=True).all()
     videos = models.videoclass.objects.all()
-    for video in videos:
-        video.link='https://www.google.com/'
-        video.save()
     for user in users:
         user.password=0
-    return render(request, 'index.html',context={'posts':posts,'users':users,'videos':videos,'form':form})
+    return render(request, 'index.html',context={'posts':posts,'users':users,'videos':videos,'form':form,'postVIP':postVIP})
 def blog(request):
     posts = models.post.objects.all().order_by('-id')
     return render(request, 'blog.html',context={'posts':posts})
@@ -50,7 +49,8 @@ def Login(request):
             user=authenticate(username=email,password=password)
             login(request,user)
             messages.success(request,'با موفقیت وارد شدید!')
-            return render(request=request,template_name='index.html',context={'posts':posts,'users':users,'videos':videos,'user.id':user.id})
+            messageTmp=''
+            return render(request=request,template_name='index.html',context={'posts':posts,'users':users,'videos':videos,'user.id':user.id,'messageTmp':messageTmp})
         else:
             messages.error(request,'در ورود شما مشکلی پیش آمد!')
             return redirect('login')
@@ -59,10 +59,9 @@ def LogOut(request):
     messages.success(request,'خروج شما موفق بود!')
     return redirect ('index')
 def commentRegister(request,id):
-    comment1=request.GET.get('myInput')
-    user=models.user.objects.get(id=id)
-    object1=models.comment(text=comment1,author=user)
-    object1.save()
+    message=request.GET.get('comment')
+    comment=models.comment(text=message,user_id=id)
+    comment.save()
     return redirect('index')
 
 def signIN(request):
