@@ -70,18 +70,17 @@ def signIN(request):
     form= signForm.SignForm()
     return render(request=request,template_name='singInForm.html',context={'form':form})
 def signInReq(request):
-    form= signForm.SignForm()
     if request.method=='POST':
         form=signForm.SignForm(data=request.POST)
         if form.is_valid():
             if form.cleaned_data['password']==form.cleaned_data['repassword']:
                 form.save()
-                User=models.user(email=form.cleaned_data['email'],password=form.cleaned_data['password'])
-                User.save()
-                email=User.email
-                password=User.password
-                user=authenticate(username=email,password=password)
-                login(request,user)
+                user=User.objects.create_user(form.cleaned_data['name'],form.cleaned_data['email'],form.cleaned_data['password'])
+                user.set_password(form.cleaned_data['password'])
+                user.save()
+
+                user=authenticate(request,username=form.cleaned_data['name'],password=form.cleaned_data['password'])
+                login(request,user,backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('index')
         else:
             messages.success(request,'در ثبت نام شما مشکلی ایجاد شده است لطفا مجدد امتحان کنید')
