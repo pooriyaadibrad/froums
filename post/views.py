@@ -8,7 +8,7 @@ from django.contrib import messages
 def index(request):
     posts = models.post.objects.all().order_by('-id')
     form=commentForm.CommentForm()
-    users = models.user.objects.all()
+    users = models.user.objects.filter(teacherStutus=True).all()
     videos = models.videoclass.objects.all()
     for video in videos:
         video.link='https://www.google.com/'
@@ -21,7 +21,7 @@ def blog(request):
     return render(request, 'blog.html',context={'posts':posts})
 def contact(request):
     return render(request=request,template_name='Contact_us.html')
-def singlepage(request,id):
+def singlepagePost(request,id):
     post=models.post.objects.get(id=id)
     return render(request=request,template_name='single.html',context={'post':post})
 def logInView(request):
@@ -87,3 +87,9 @@ def signInReq(request):
         else:
             messages.success(request,'در ثبت نام شما مشکلی ایجاد شده است لطفا مجدد امتحان کنید')
     return redirect('index')
+def Video(request):
+    videos = models.videoclass.objects.all().order_by('-id')
+    return render(request=request,template_name='videoPage.html',context={'videos':videos})
+def singlepageVideo(request,id):
+    video=models.videoclass.objects.get(id=id)
+    return render(request=request,template_name='singInForm.html',context={'post':video})

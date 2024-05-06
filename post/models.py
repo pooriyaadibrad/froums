@@ -47,6 +47,7 @@ class videoclass(models.Model):
     cover = models.ImageField(upload_to='media/videoclass/',default='default.jpg')
     pub_date = models.DateTimeField(auto_now_add=True)
     link = models.CharField(max_length=100,default='',null=False,blank=False)
+    largeContent= models.TextField(default='',null=True,blank=True)
     def __str__(self):
         return f'{self.name}'
 
