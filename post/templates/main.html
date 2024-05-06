@@ -216,10 +216,11 @@
                     {% if user.is_authenticated  %}
                     <div class="input-group">
                         <span class="my-auto mx-4" id="basic-addon1"><i class="fa fa-envelope"></i></span>
-                        <input type="text" class="form-control fh5co_footer_text_box"
+                        <input name="mycomment" formmethod="post" type="text" class="form-control fh5co_footer_text_box"
                             placeholder="متن خود را برای ما ارسال کنید..." aria-describedby="basic-addon1"
                             style="border: 1px solid #00989B">
-                        <a href="#" class="input-group-addon  text-decoration-none" id=""
+                        {% csrf_token %}
+                        <a href="{% url 'comment/' %}?myInput={{ mycomment }}" class="input-group-addon  text-decoration-none" id=""
                             style="background-color: #00989B;color: white;border: 1px solid #00989B ;"> <i
                                 class=""></i>ارسال</a>
                     </div>

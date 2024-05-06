@@ -11,7 +11,7 @@ urlpatterns = [
     path('LogInReq/', views.Login, name='LogInReq'),
     path('LogOut/', views.LogOut, name='LogOut'),
     path('signIN/', views.signIN, name='signIN'),
-    path('comment/<int:id>', views.commentRegister, name='comment'),
+    path('comment/', views.commentRegister, name='comment'),
     path('signInReq/', views.signInReq, name='signInReq'),
     path('video/', views.Video, name='video'),
 ]

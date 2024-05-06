@@ -59,16 +59,12 @@ def LogOut(request):
     messages.success(request,'خروج شما موفق بود!')
     return redirect ('index')
 def commentRegister(request,id):
-
+    comment1=request.GET.get('myInput')
     user=models.user.objects.get(id=id)
-    if request.method=='POST':
-        instans=models.comment(request.POST)
-        instans.user=user
-        instans.save()
-        return redirect('index')
-    else:
-        messages.success(request,'در ثبت نظر مشکلی بوجود آمده است لظفا کمی بعد تر دوباره امتحان کنید')
-        return redirect('index')
+    object1=models.comment(text=comment1,author=user)
+    object1.save()
+    return redirect('index')
+
 def signIN(request):
     form= signForm.SignForm()
     return render(request=request,template_name='singInForm.html',context={'form':form})
