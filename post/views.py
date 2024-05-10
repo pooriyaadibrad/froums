@@ -8,13 +8,14 @@ from tkinter import messagebox
 # Create your views here.
 def index(request):
     posts = models.post.objects.all().order_by('-id')
-    postVIP=models.post.objects.filter(id=0).first()
+    postVIP=posts[0]
     form=commentForm.CommentForm()
     users = models.user.objects.filter(teacherStutus=True).all()
+    users1 = models.user.objects.filter(vip=True).all()
     videos = models.videoclass.objects.all()
     for user in users:
         user.password=0
-    return render(request, 'index.html',context={'posts':posts,'users':users,'videos':videos,'form':form,'postVIP':postVIP})
+    return render(request, 'index.html',context={'posts':posts,'users':users,'users1':users1,'videos':videos,'form':form,'postVIP':postVIP})
 def blog(request):
     posts = models.post.objects.all().order_by('-id')
     return render(request, 'blog.html',context={'posts':posts})
@@ -79,6 +80,9 @@ def signInReq(request):
                 user=authenticate(request,username=form.cleaned_data['name'],password=form.cleaned_data['password'])
                 login(request,user,backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('index')
+            else:
+                messages.success(request, '۲ فیلد پسورد با هم فرق میکنن دقت کن دانشجوی گل!')
+                return redirect('signIN')
         else:
             messages.success(request,'در ثبت نام شما مشکلی ایجاد شده است لطفا مجدد امتحان کنید')
     return redirect('index')
@@ -87,4 +91,16 @@ def Video(request):
     return render(request=request,template_name='videoPage.html',context={'videos':videos})
 def singlepageVideo(request,id):
     video=models.videoclass.objects.get(id=id)
-    return render(request=request,template_name='singInForm.html',context={'post':video})
+    return render(request=request,template_name='singleVideo.html',context={'post':video})
+def teacher(request):
+    users = models.user.objects.filter(teacherStutus=True).all()
+    return render(request=request,template_name='teacherForm.html',context={'users':users})
+def VipUser(request):
+    users = models.user.objects.filter(vip=True).all()
+    return render(request=request,template_name='vipUserPage.html',context={'users':users})
+def singlepageteacher(request,id):
+    user = models.user.objects.get(id=id)
+    return render(request=request, template_name='singleTeacher.html', context={'user': user})
+def singlepageVipUser(request,id):
+    user = models.user.objects.get(id=id)
+    return render(request=request, template_name='singleVipUser.html', context={'user': user})

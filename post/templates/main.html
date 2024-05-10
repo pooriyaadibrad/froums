@@ -82,7 +82,10 @@
                     </li>
                     -->
                     <li class="nav-item">
-                        <a class="nav-link " style="font-family: fontuni;" aria-current="page" href="/blog/">بلاگ</a>
+                        <a class="nav-link " style="font-family: fontuni;" aria-current="page" href="/blog/">اخبار</a>
+                    </li>
+                 <li class="nav-item">
+                        <a class="nav-link " style="font-family: fontuni;" aria-current="page" href="/teacher"> اعضا</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " style="font-family: fontuni;" aria-current="page" href="#">درباره ما</a>
@@ -90,6 +93,8 @@
                     <li class="nav-item">
                         <a class="nav-link " style="font-family: fontuni;" aria-current="page" href="/video"> ویدیو های آموزشی</a>
                     </li>
+
+
                     {% if user.is_authenticated %}
                     <li class="nav-item pt-3 signInbtngit"  >
                         <a style="text-decoration: none;color: #00989B" class="mx-4 my-3" aria-current="page" href="/LogOut">
@@ -102,7 +107,7 @@
                         </a>
                     </li>
                     {% else %}
-                      <li class="nav-item pt-3 signInbtngit"  >
+                      <li class="nav-item pt-3 signInbtngit "  >
                         <a style="text-decoration: none;color: #00989B" class="mx-4 my-3" aria-current="page" href="/LogIn/">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor " style="width: 20px;height: 20px;font-family: fontuni; ">
@@ -152,7 +157,7 @@
                     <!--map-->
                     <!--map-->
                     <iframe class="mx-auto"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d660.5449043427361!2d52.351221804766794!3d36.45521591861346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8fbd527040a94b%3A0xe9dd3370dd7e561f!2sAmol%20University%20of%20Special%20Modern%20Technologies!5e0!3m2!1sen!2s!4v1713973174506!5m2!1sen!2s"
+                        src=""
                         style="border:0;border-radius: 30px;height: 80%;" width="100%" allowfullscreen="" loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -199,17 +204,24 @@
                     <a href="#" class="footer_post pb-4 text-decoration-none"> تست </a>
 
                 </div>
-                <div class="col-12 col-md-12 col-lg-4 ">
+                 <div class="col-12 col-md-5 col-lg-1 position_footer_relative pr-2 md:mr-5">
+
+                    <div class="footer_main_title py-3"> لبنک مفید</div>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> Dec 31, 2016</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none "> فناوری نوبن آمل</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> Dec 31, 2016</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none">انجمن علمی مهندسی </a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> Dec 31, 2016</a>
+                    <a href="#" class="footer_post pb-4 text-decoration-none"> تست </a>
+
+                </div>
+                <div class="col-12 col-md-12 col-lg-4 " >
+                    <h3 dir="ltr">Developer Of This Website</h3>
                     <div class="footer_main_title py-3"> </div>
-                    <a href="#" class="footer_img_post_6"><img src="images/allef-vinicius-108153.jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/32-450x260.jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/download (1).jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/science-578x362.jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/vil-son-35490.jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/zack-minor-15104.jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/download.jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/download (2).jpg" alt="img" /></a>
-                    <a href="#" class="footer_img_post_6"><img src="images/ryan-moreno-98837.jpg" alt="img" /></a>
+                    <div><span href="#" class="footer_img_post_6 "><img src="{% static 'image/adib.jpg' %}" alt="img" /></span><span class="float-left pt-3">Pooriya Adib   <span class="end">Django </span></span></div>
+                    <div><span href="#" class="footer_img_post_6 "><img src="{% static 'image/kazemi.jpg' %}" alt="img" /></span><span class="float-left pt-3">Mobin Kazemi  <span>React - Bootstrap </span></span></div>
+                    <div><span href="#" class="footer_img_post_6 "><img src="{% static 'image/adib.jpg' %}" alt="img" /></span><span class="float-left pt-3">Amir Hossein Olfati  <span>DevOps </span></span></div>
+
                 </div>
             </div>
             <!--ارسال نظرات-->

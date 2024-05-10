@@ -29,6 +29,9 @@ class user(models.Model):
     studentCode=models.IntegerField(default=0,null=False,blank=False)
     adminStutus=models.BooleanField(default=False)
     teacherStutus=models.BooleanField(default=False)
+    vip=models.BooleanField(default=False)
+    response=models.CharField(max_length=100,default='')
+    bio=models.CharField(max_length=100,default='')
     def __str__(self):
         return f'{self.name}'
 """

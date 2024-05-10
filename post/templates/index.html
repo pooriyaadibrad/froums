@@ -8,9 +8,9 @@
                 <div class="fh5co_suceefh5co_height"><img src="{{ postVIP.image.url }}" alt="img" />
                     <div class="fh5co_suceefh5co_height_position_absolute"></div>
                     <div class="fh5co_suceefh5co_height_position_absolute_font">
-                        <div class=""><a href="#" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ postVIP.pub_data }}
+                        <div class=""><a href="/singlepagePost/{{ postVIP.id }}" class="color_fff"> <i class="fa fa-clock-o"></i>&nbsp;&nbsp;{{ postVIP.pub_date }}
                             </a></div>
-                        <div class=""><a href="single.html" class="fh5co_good_font"> {{ postVIP.title }}</a></div>
+                        <div class=""><a href="/singlepagePost/{{ postVIP.id }}" class="fh5co_good_font"> {{ postVIP.title }}</a></div>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
     <div class="container-fluid pt-3">
         <div class="container animate-box" data-animate-effect="fadeIn">
             <div>
-                <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">استاید انجمن علمی</div>
+                <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4"><a href="/teacher" style="color: black;text-decoration: none">استاید انجمن علمی</a></div>
             </div>
             <div class="owl-carousel owl-theme js" id="slider1">
             <!--
@@ -73,17 +73,19 @@
             -->
 
                 {% for user in users %}
+
                 <div class="item px-2">
-                    <div class="fh5co_latest_trading_img_position_relative borderOfMember">
-                        <div class="fh5co_latest_trading_img"><img src="{{ user.image.url }}" alt=""
-                                class="fh5co_img_special_relative" /></div>
+                <a href="singlepageteacher/{{ user.id }}" class="text-white " style="text-decoration: none;">
+                    <div class="fh5co_latest_trading_img_position_relative borderOfMember ">
+                        <div class="fh5co_latest_trading_img "> <img class="img-fluid" src="{{ user.image.url }}" alt=""
+                                 /></div>
                         <div class="fh5co_latest_trading_img_position_absolute"></div>
                         <div class="fh5co_latest_trading_img_position_absolute_1"
                             style="display: flex;align-items: center;justify-content: center;text-decoration: none;">
-                            <a href="single.html" class="text-white " style="text-decoration: none;"> {{ user.name }} {{ user.family }} </a>
+                            <a href="singlepageteacher/{{ user.id }}" class="text-white " style="text-decoration: none;"> {{ user.name }} {{ user.family }} </a>
 
                         </div>
-                    </div>
+                    </div></a>
                 </div>
                 {% endfor %}
 
@@ -104,8 +106,8 @@
             <div class="owl-carousel owl-theme" id="slider2">
                 {% for post in posts %}
                 <div class="item px-2">
-                    <div class="fh5co_hover_news_img">
-                        <div class="fh5co_news_img"><img src="{{ post.image.url }}" alt="" /></div>
+                    <div class="fh5co_hover_news_img ">
+                        <div class="fh5co_news_img "><img src="{{ post.image.url }}" alt="" /></div>
                         <div>
                             <a href="/singlepagePost/{{ post.id }}" class="d-block fh5co_small_post_heading"><span class="">{{ post.title }}</span></a>
                             <div class="c_g"><i class="fa fa-clock-o"></i> {{ post.pub_date }}</div>
@@ -283,47 +285,24 @@
                 </div>
                 -->
                 <div>
-                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4" dir="rtl">اعضا انجمن</div>
+                    <div class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4" dir="rtl"><a href="/VipUser" style="color: black;text-decoration: none">اعضا انجمن</a></div>
                 </div>
+                {% for item in users1 %}
+                    {% if item.vip %}
                 <div class="row pb-3">
+
                     <div class="col-5 align-self-center">
-                        <img src="images/download (1).jpg" alt="img" class="fh5co_most_trading" />
+                        <a href="/singlepageVipUser/{{ item.id }}"><img src="{{ item.image.url }}" alt="img" class="fh5co_most_trading" /></a>
                     </div>
                     <div class="col-7 paddding">
-                        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.
-                        </div>
-                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
+                        <a href="/singlepageVipUser/{{ item.id }}" style="text-decoration: none ;color: black;"><div class="most_fh5co_treding_font"> {{ item.name }}{{ item.family }}
+                        </div>response
+                        <div class="most_fh5co_treding_font_123"> {{ item.response }}</div></a>
                     </div>
+
                 </div>
-                <div class="row pb-3">
-                    <div class="col-5 align-self-center">
-                        <img src="images/allef-vinicius-108153.jpg" alt="img" class="fh5co_most_trading" />
-                    </div>
-                    <div class="col-7 paddding">
-                        <div class="most_fh5co_treding_font"> Enim ad minim veniam nostrud xercitation ullamco.
-                        </div>
-                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-                    </div>
-                </div>
-                <div class="row pb-3">
-                    <div class="col-5 align-self-center">
-                        <img src="images/download (2).jpg" alt="img" class="fh5co_most_trading" />
-                    </div>
-                    <div class="col-7 paddding">
-                        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.
-                        </div>
-                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-                    </div>
-                </div>
-                <div class="row pb-3">
-                    <div class="col-5 align-self-center"><img src="images/seth-doyle-133175.jpg" alt="img"
-                            class="fh5co_most_trading" /></div>
-                    <div class="col-7 paddding">
-                        <div class="most_fh5co_treding_font"> Magna aliqua ut enim ad minim veniam quis nostrud.
-                        </div>
-                        <div class="most_fh5co_treding_font_123"> April 18, 2016</div>
-                    </div>
-                </div>
+                    {% endif %}
+                {% endfor %}
             </div>
 
         </div>
