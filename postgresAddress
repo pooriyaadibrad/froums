@@ -1,0 +1,1 @@
+sudo docker run --rm --name psql -e POSTGRES_PASSWORD=ausmt -v/var/lib/postgresql/data:/home/pooriya/Desktop/postgresDjango -p5432:5432 postgres
