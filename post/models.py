@@ -1,4 +1,6 @@
 from django.db import models
+import jdatetime
+from django_jalali.db import models as jalali_models
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -11,7 +13,7 @@ class post(models.Model):
     content = models.TextField(default='',null=True,blank=True)
     largeContent = models.TextField(default='',null=True,blank=True)
     image = models.ImageField(upload_to='media/post/',default='default.jpg')
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = jalali_models.jDateTimeField(auto_now_add=True)
     category = models.ForeignKey('category',on_delete=models.CASCADE)
     def __str__(self):
         return f'{self.title} , {self.pub_date}'
